@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259604582075",
+    "project_id": "fit4u-20bbe",
+    "storage_bucket": "fit4u-20bbe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259604582075:android:b9f0b3d95e91fd12b3639e",
+        "android_client_info": {
+          "package_name": "com.example.fit4u"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDGEMZE13D9nxB8iZi3iDOzJLJtprfHDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
