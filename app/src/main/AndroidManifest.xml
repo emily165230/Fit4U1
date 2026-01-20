@@ -18,6 +18,8 @@
 
         <activity android:name="com.example.fit4u.HomeActivity"/>
         <activity android:name=".ClosetActivity" />
+        <activity android:name=".ItemDetailActivity" />
+        <activity android:name=".OutfitTodayActivity" />
 
         <activity
             android:name="com.example.fit4u.IntroVideoActivity"

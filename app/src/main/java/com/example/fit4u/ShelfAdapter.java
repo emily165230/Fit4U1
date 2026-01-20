@@ -14,30 +14,53 @@ import java.util.Map;
 
 public class ShelfAdapter extends RecyclerView.Adapter<ShelfAdapter.VH> {
 
+    public interface OnItemClick {
+        void onClick(ClothingItem item);
+    }
+
     private final List<String> categories;
     private final Map<String, List<ClothingItem>> data;
+    private final OnItemClick listener;
 
-    public ShelfAdapter(List<String> categories, Map<String, List<ClothingItem>> data) {
+    public ShelfAdapter(List<String> categories,
+                        Map<String, List<ClothingItem>> data,
+                        OnItemClick listener) {
         this.categories = categories;
         this.data = data;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shelf, parent, false);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_shelf, parent, false);
         return new VH(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VH h, int position) {
-        String cat = categories.get(position);
-        h.tvTitle.setText(cat);
+        String category = categories.get(position);
+        h.tvTitle.setText(category);
 
-        List<ClothingItem> items = data.get(cat);
+        List<ClothingItem> items = data.get(category);
 
-        h.rv.setLayoutManager(new LinearLayoutManager(h.rv.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        h.rv.setAdapter(new ClosetItemAdapter(items));
+        ClosetItemAdapter adapter =
+                new ClosetItemAdapter(items, item -> {
+                    if (listener != null) {
+                        listener.onClick(item);
+                    }
+                });
+
+        h.rvItems.setLayoutManager(
+                new LinearLayoutManager(
+                        h.itemView.getContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
+        );
+
+        h.rvItems.setAdapter(adapter);
     }
 
     @Override
@@ -47,12 +70,12 @@ public class ShelfAdapter extends RecyclerView.Adapter<ShelfAdapter.VH> {
 
     static class VH extends RecyclerView.ViewHolder {
         TextView tvTitle;
-        RecyclerView rv;
+        RecyclerView rvItems;
 
         VH(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvShelfTitle);
-            rv = itemView.findViewById(R.id.rvItemsHorizontal);
+            rvItems = itemView.findViewById(R.id.rvItems);
         }
     }
 }

@@ -16,9 +16,11 @@ import java.util.List;
 public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.VH> {
 
     private final List<ClothingItem> items;
+    private final ShelfAdapter.OnItemClick listener; // ✅ אותו listener
 
-    public ClosetItemAdapter(List<ClothingItem> items) {
+    public ClosetItemAdapter(List<ClothingItem> items, ShelfAdapter.OnItemClick listener) {
         this.items = items;
+        this.listener = listener;
     }
 
     @NonNull
@@ -31,17 +33,22 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.VH
     @Override
     public void onBindViewHolder(@NonNull VH h, int position) {
         ClothingItem item = items.get(position);
+
         h.tvColor.setText(item.color == null ? "" : item.color);
 
         Glide.with(h.img.getContext())
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(h.img);
+
+        h.itemView.setOnClickListener(v -> {
+            if (listener != null) listener.onClick(item);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
     }
 
     static class VH extends RecyclerView.ViewHolder {

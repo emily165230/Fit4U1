@@ -3,22 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginBottom="14dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="18dp">
 
     <TextView
         android:id="@+id/tvShelfTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shoes"
+        android:text="Tops"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#222222"
-        android:paddingStart="6dp"
-        android:paddingBottom="6dp" />
+        android:textSize="16sp"
+        android:textColor="#2D2D2D"
+        android:paddingBottom="8dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvItemsHorizontal"
+    <!-- shelf card (border + shadow) -->
+    <FrameLayout
+        android:id="@+id/shelfCard"
         android:layout_width="match_parent"
-        android:layout_height="140dp" />
+        android:layout_height="120dp"
+        android:background="@drawable/shelf_card_bg"
+        android:padding="10dp"
+        android:clipToPadding="false">
+
+        <!-- המדף עצמו -->
+        <ImageView
+            android:id="@+id/imgShelfBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/shelf_bg"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true" />
+
+        <!-- הבגדים על המדף -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="12dp"
+            android:clipToPadding="false" />
+
+    </FrameLayout>
 
 </LinearLayout>
