@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.fit4u.R;
+import com.example.fit4u.ui.home.IntroVideoActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 

@@ -4,96 +4,122 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="22dp"
-    app:cardElevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="18dp"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="12dp"
-        android:background="#FFFFFF">
+        android:background="@android:color/white">
 
-        <TextView
-            android:id="@+id/tvOutfitDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2026-01-21"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#FF5AA5"
-            android:paddingBottom="10dp" />
+        <!-- Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!-- 2x2 Grid (stable) -->
-        <LinearLayout
+            <TextView
+                android:id="@+id/tvOutfitDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2026-01-21"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#FF5AA5" />
+
+            <ImageButton
+                android:id="@+id/btnDeleteOutfit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="Delete outfit"
+                android:padding="8dp" />
+        </RelativeLayout>
+
+        <!-- Grid 2x2 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp">
 
-            <!-- Row 1 -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Vertical middle -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineVertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- Horizontal middle -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- Top Left -->
+            <ImageView
+                android:id="@+id/imgGrid1"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_margin="6dp"
+                android:background="@drawable/item_placeholder_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_item"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
+                app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal" />
 
-                <ImageView
-                    android:id="@+id/imgGrid1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_item"
-                    android:background="@drawable/item_placeholder_bg" />
-
-                <ImageView
-                    android:id="@+id/imgGrid2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_item"
-                    android:background="@drawable/item_placeholder_bg" />
-            </LinearLayout>
-
-            <!-- Space between rows -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp" />
-
-            <!-- Row 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Top Right -->
+            <ImageView
+                android:id="@+id/imgGrid2"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_margin="6dp"
+                android:background="@drawable/item_placeholder_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_item"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal" />
 
-                <ImageView
-                    android:id="@+id/imgGrid3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_item"
-                    android:background="@drawable/item_placeholder_bg" />
+            <!-- Bottom Left -->
+            <ImageView
+                android:id="@+id/imgGrid3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="6dp"
+                android:background="@drawable/item_placeholder_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_item"
+                app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imgGrid4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_item"
-                    android:background="@drawable/item_placeholder_bg" />
-            </LinearLayout>
+            <!-- Bottom Right -->
+            <ImageView
+                android:id="@+id/imgGrid4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="6dp"
+                android:background="@drawable/item_placeholder_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_item"
+                app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+                app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

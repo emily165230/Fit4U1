@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.home;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,8 @@ import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.media3.ui.PlayerView;
+
+import com.example.fit4u.R;
 
 @UnstableApi
 public class IntroVideoActivity extends AppCompatActivity {

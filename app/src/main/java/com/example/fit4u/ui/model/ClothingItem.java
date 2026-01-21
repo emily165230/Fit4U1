@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.model;
 
 public class ClothingItem {
     public String id;       // Firestore document id

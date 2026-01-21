@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.home;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -20,6 +20,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fit4u.ui.closet.ClosetActivity;
+import com.example.fit4u.ui.outfit.OutfitTodayActivity;
+import com.example.fit4u.R;
+import com.example.fit4u.ui.outfit.SavedOutfitsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -77,8 +81,14 @@ public class HomeActivity extends AppCompatActivity {
 
         btnAddItem = findViewById(R.id.btnAddItem);
         btnCloset  = findViewById(R.id.btnCloset);
+
         findViewById(R.id.btnToday).setOnClickListener(v ->
                 startActivity(new Intent(HomeActivity.this, OutfitTodayActivity.class))
+        );
+
+        // ✅ NEW: Saved outfits
+        findViewById(R.id.btnSavedOutfits).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, SavedOutfitsActivity.class))
         );
 
         btnAddItem.setOnClickListener(v -> openAddItemDialog());
@@ -181,14 +191,12 @@ public class HomeActivity extends AppCompatActivity {
 
                                                 Toast.makeText(HomeActivity.this, "Saved ✅", Toast.LENGTH_SHORT).show();
 
-                                                // optional: tell previous screen something changed
                                                 setResult(RESULT_OK);
 
                                                 try { hideKeyboard(dlgColor); } catch (Exception ignored) {}
                                                 try { if (dialog.isShowing()) dialog.dismiss(); } catch (Exception ignored) {}
                                                 try { dialog.cancel(); } catch (Exception ignored) {}
 
-                                                // failsafe close again
                                                 mainHandler.postDelayed(() -> {
                                                     try { if (dialog.isShowing()) dialog.dismiss(); } catch (Exception ignored) {}
                                                 }, 200);
@@ -218,7 +226,6 @@ public class HomeActivity extends AppCompatActivity {
         cancelTimeout();
         timeoutRunnable = () -> {
             try {
-                // if still running -> release UI so it won't look stuck forever
                 if (dlgStatus != null) dlgStatus.setText("Still working... check internet / rules, then try again.");
                 if (saveBtn != null) saveBtn.setEnabled(true);
                 Toast.makeText(HomeActivity.this, "Taking too long ⏳", Toast.LENGTH_SHORT).show();

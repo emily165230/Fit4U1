@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fit4u.ui.model.ClothingItem;
+import com.example.fit4u.R;
 
 import java.util.List;
 import java.util.Map;

@@ -15,24 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fit4U"
         tools:targetApi="31">
-        <activity android:name=".SavedOutfitsActivity" />
-        <activity android:name="com.example.fit4u.HomeActivity"/>
-        <activity android:name=".ClosetActivity" />
-        <activity android:name=".ItemDetailActivity" />
-        <activity android:name=".OutfitTodayActivity" />
-        <activity android:name=".PickItemActivity" />
+        <activity android:name=".ui.outfit.SavedOutfitsActivity" />
+        <activity android:name="com.example.fit4u.ui.home.HomeActivity"/>
+        <activity android:name=".ui.closet.ClosetActivity" />
+        <activity android:name=".ui.closet.ItemDetailActivity" />
+        <activity android:name=".ui.outfit.OutfitTodayActivity" />
+        <activity android:name=".ui.pick.PickItemActivity" />
 
 
         <activity
-            android:name="com.example.fit4u.IntroVideoActivity"
+            android:name="com.example.fit4u.ui.home.IntroVideoActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
 
-        <activity android:name="com.example.fit4u.SignUpActivity"/>
+        <activity android:name="com.example.fit4u.ui.auth.SignUpActivity"/>
 
         <!-- THIS is the launcher activity -->
         <activity
-            android:name="com.example.fit4u.MainActivity"
+            android:name="com.example.fit4u.ui.auth.MainActivity"
             android:exported="true">
 
             <intent-filter>

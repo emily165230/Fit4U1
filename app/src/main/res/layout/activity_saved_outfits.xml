@@ -39,8 +39,7 @@
             android:layout_height="wrap_content"
             android:text="Saved Outfits"
             android:textStyle="bold"
-            android:textSize="28sp"
-            android:letterSpacing="0.05"
+            android:textSize="30sp"
             android:textColor="#FF5AA5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,4 +57,5 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

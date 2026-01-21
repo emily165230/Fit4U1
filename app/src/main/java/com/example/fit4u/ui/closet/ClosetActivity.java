@@ -1,4 +1,4 @@
-package com.example.fit4u;
+package com.example.fit4u.ui.closet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fit4u.ui.model.ClothingItem;
+import com.example.fit4u.R;
+import com.example.fit4u.ui.adapter.ShelfAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;

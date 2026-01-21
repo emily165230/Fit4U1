@@ -52,12 +52,27 @@
             app:layout_constraintBottom_toTopOf="@id/btnToday"
             android:layout_marginBottom="10dp" />
 
-        <!-- Today’s Outfit (מעל שני הכפתורים) -->
+        <!-- Today’s Outfit -->
         <Button
             android:id="@+id/btnToday"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:text="Today’s Outfit"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#FF5AA5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSavedOutfits"
+            android:layout_marginBottom="10dp" />
+
+        <!-- ✅ NEW: Saved Outfits -->
+        <Button
+            android:id="@+id/btnSavedOutfits"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:text="Saved Outfits"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textColor="@android:color/white"
