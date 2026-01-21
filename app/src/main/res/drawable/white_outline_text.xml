@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- outline לבן -->
+    <item android:left="1dp" android:top="1dp">
+        <TextViewStyle
+            android:color="#FFFFFF" />
+    </item>
+
+</layer-list>

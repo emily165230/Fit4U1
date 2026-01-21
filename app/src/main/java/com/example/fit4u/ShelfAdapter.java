@@ -41,41 +41,49 @@ public class ShelfAdapter extends RecyclerView.Adapter<ShelfAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull VH h, int position) {
         String category = categories.get(position);
-        h.tvTitle.setText(category);
+
+        // Title (fill)
+        if (h.tvTitle != null) h.tvTitle.setText(category);
+
+        // Title (outline) - exists only if you used the new item_shelf.xml
+        if (h.tvTitleOutline != null) h.tvTitleOutline.setText(category);
 
         List<ClothingItem> items = data.get(category);
 
-        ClosetItemAdapter adapter =
-                new ClosetItemAdapter(items, item -> {
-                    if (listener != null) {
-                        listener.onClick(item);
-                    }
-                });
+        // avoid null list crash
+        if (items == null) items = java.util.Collections.emptyList();
 
-        h.rvItems.setLayoutManager(
-                new LinearLayoutManager(
-                        h.itemView.getContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                )
-        );
+        ClosetItemAdapter adapter = new ClosetItemAdapter(items, item -> {
+            if (listener != null) listener.onClick(item);
+        });
+
+        h.rvItems.setLayoutManager(new LinearLayoutManager(
+                h.itemView.getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+        ));
 
         h.rvItems.setAdapter(adapter);
     }
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return categories == null ? 0 : categories.size();
     }
 
     static class VH extends RecyclerView.ViewHolder {
         TextView tvTitle;
+        TextView tvTitleOutline; // <-- NEW
         RecyclerView rvItems;
 
         VH(@NonNull View itemView) {
             super(itemView);
+
             tvTitle = itemView.findViewById(R.id.tvShelfTitle);
             rvItems = itemView.findViewById(R.id.rvItems);
+
+            // If you didn't add tvShelfTitleOutline in XML, this will just be null (and that's ok)
+            tvTitleOutline = itemView.findViewById(R.id.tvShelfTitleOutline);
         }
     }
 }

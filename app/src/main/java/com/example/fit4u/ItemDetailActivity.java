@@ -3,6 +3,7 @@ package com.example.fit4u;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,10 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
+        // Back button
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+
         imgDetail = findViewById(R.id.imgDetail);
         etCategory = findViewById(R.id.etDetailCategory);
         etColor = findViewById(R.id.etDetailColor);
@@ -56,7 +61,12 @@ public class ItemDetailActivity extends AppCompatActivity {
         if (category != null) etCategory.setText(category);
         if (color != null) etColor.setText(color);
 
-        Glide.with(this).load(imageUrl).centerCrop().into(imgDetail);
+        if (imageUrl != null && !imageUrl.trim().isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .centerCrop()
+                    .into(imgDetail);
+        }
 
         btnSave.setOnClickListener(v -> saveChanges());
         btnDelete.setOnClickListener(v -> deleteItem());
@@ -100,7 +110,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                 .set(updates, SetOptions.merge())
                 .addOnSuccessListener(v -> {
                     Toast.makeText(this, "Saved ✅", Toast.LENGTH_SHORT).show();
-                    finish(); // ✅ סוגר מיד
+                    finish(); // יוצא מהדף מיד
                 })
                 .addOnFailureListener(e -> {
                     btnSave.setEnabled(true);
@@ -131,10 +141,9 @@ public class ItemDetailActivity extends AppCompatActivity {
                 .document(docId)
                 .delete()
                 .addOnSuccessListener(v -> {
-                    // delete image (best effort)
                     deleteStorageBestEffort();
                     Toast.makeText(this, "Deleted ✅", Toast.LENGTH_SHORT).show();
-                    finish(); // ✅ סוגר מיד
+                    finish(); // יוצא מהדף מיד
                 })
                 .addOnFailureListener(e -> {
                     btnSave.setEnabled(true);
@@ -144,7 +153,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     private void deleteStorageBestEffort() {
-        if (imageUrl == null || imageUrl.isEmpty()) return;
+        if (imageUrl == null || imageUrl.trim().isEmpty()) return;
         try {
             StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
             ref.delete();

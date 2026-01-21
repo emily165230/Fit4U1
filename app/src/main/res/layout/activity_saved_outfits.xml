@@ -4,26 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Background -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/pink_background"
         android:scaleType="centerCrop" />
 
-    <!-- Soft overlay -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#55FFFFFF" />
 
-    <!-- Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <!-- Back button (round, top-right) -->
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="44dp"
@@ -37,54 +33,29 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Title OUTLINE (2 TextViews stacked) -->
-        <FrameLayout
-            android:id="@+id/titleContainer"
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:text="Saved Outfits"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:letterSpacing="0.05"
+            android:textColor="#FF5AA5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp" />
 
-            <!-- outline -->
-            <TextView
-                android:id="@+id/tvTitleOutline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Closet"
-                android:textStyle="bold"
-                android:textSize="34sp"
-                android:letterSpacing="0.04"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/baloo2"
-                android:translationX="1dp"
-                android:translationY="1dp" />
-
-            <!-- fill -->
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Closet"
-                android:textStyle="bold"
-                android:textSize="34sp"
-                android:letterSpacing="0.04"
-                android:textColor="#FF8FC7"
-                android:fontFamily="@font/baloo2" />
-        </FrameLayout>
-
-        <!-- Shelves list -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvShelves"
+            android:id="@+id/rvSavedOutfits"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="14dp"
-            app:layout_constraintTop_toBottomOf="@id/titleContainer"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

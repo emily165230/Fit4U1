@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Background image -->
+    <!-- Background -->
     <ImageView
         android:id="@+id/imgBg"
         android:layout_width="match_parent"
@@ -13,21 +12,11 @@
         android:src="@drawable/wardrobe"
         android:scaleType="centerCrop" />
 
-    <!-- Dark overlay for readability -->
+    <!-- Soft overlay -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#33000000" />
-
-    <Button
-        android:id="@+id/btnToday"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:text="Today’s Outfit"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#FF5AA5" />
 
     <!-- Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,76 +24,87 @@
         android:layout_height="match_parent"
         android:padding="18dp">
 
-        <!-- Pink button: Add Item -->
-
-        <!-- Pink button: Closet -->
-
-        <!-- Optional space below (later: list/cards etc.) -->
-
+        <!-- Title -->
         <TextView
             android:id="@+id/tvHello"
-            android:layout_width="237dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Hi welcome back!"
             android:textColor="@android:color/white"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.565"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.097" />
-
-        <Button
-            android:id="@+id/btnAddItem"
-            android:layout_width="136dp"
-            android:layout_height="69dp"
-            android:backgroundTint="#FF5AA5"
-            android:text="Add Item"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.852" />
-
-        <Button
-            android:id="@+id/btnCloset"
-            android:layout_width="144dp"
-            android:layout_height="71dp"
-            android:backgroundTint="#FF5AA5"
-            android:text="Closet"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.064"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.852" />
+            android:layout_marginTop="80dp" />
 
+        <!-- Tip -->
         <TextView
             android:id="@+id/tvTip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="Choose an option to continue 👗"
+            android:text="Choose an option to continue 💕 "
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.91" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnToday"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Today’s Outfit (מעל שני הכפתורים) -->
+        <Button
+            android:id="@+id/btnToday"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:text="Today’s Outfit"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#FF5AA5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnRow"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Row of buttons -->
+        <LinearLayout
+            android:id="@+id/btnRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/btnCloset"
+                android:layout_width="0dp"
+                android:layout_height="62dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF5AA5"
+                android:text="Closet"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="14dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/btnAddItem"
+                android:layout_width="0dp"
+                android:layout_height="62dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF5AA5"
+                android:text="Add Item"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

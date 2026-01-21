@@ -15,11 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fit4U"
         tools:targetApi="31">
-
+        <activity android:name=".SavedOutfitsActivity" />
         <activity android:name="com.example.fit4u.HomeActivity"/>
         <activity android:name=".ClosetActivity" />
         <activity android:name=".ItemDetailActivity" />
         <activity android:name=".OutfitTodayActivity" />
+        <activity android:name=".PickItemActivity" />
+
 
         <activity
             android:name="com.example.fit4u.IntroVideoActivity"
