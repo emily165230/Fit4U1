@@ -3,71 +3,71 @@ package com.example.fit4u.ui.home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.media3.common.MediaItem;
-import androidx.media3.common.Player;
-import androidx.media3.common.util.UnstableApi;
-import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.ui.AspectRatioFrameLayout;
-import androidx.media3.ui.PlayerView;
 
 import com.example.fit4u.R;
 
-@UnstableApi
 public class IntroVideoActivity extends AppCompatActivity {
 
-    private ExoPlayer player;
-    private PlayerView playerView;
+    private FullscreenVideoView videoView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_video);
 
-        playerView = findViewById(R.id.playerView);
+        videoView = findViewById(R.id.videoView);
 
-        player = new ExoPlayer.Builder(this).build();
-        playerView.setPlayer(player);
+        // Fullscreen (מסתיר סטטוס/ניווט)
+        hideSystemUi();
 
-        // ✅ מסך מלא "קרופ" (כמו סטורי/טיקטוק) – בלי פסים שחורים
-        playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
-
+        // הסרטון: res/raw/homepage.mp4 (אצלך קוראים לו homepage)
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.homepage);
-        MediaItem mediaItem = MediaItem.fromUri(uri);
+        videoView.setVideoURI(uri);
 
-        player.setMediaItem(mediaItem);
-        player.prepare();
-        player.play();
+        videoView.setOnPreparedListener(mp -> {
+            mp.setLooping(false);
+            videoView.setVideoSize(mp.getVideoWidth(), mp.getVideoHeight());
+            videoView.start();
+        });
 
-        player.addListener(new Player.Listener() {
-            @Override
-            public void onPlaybackStateChanged(int state) {
-                if (state == Player.STATE_ENDED) {
-                    goHome();
-                }
-            }
+        videoView.setOnCompletionListener(mp -> {
+            startActivity(new Intent(IntroVideoActivity.this, HomeActivity.class));
+            finish();
+        });
 
-            @Override
-            public void onPlayerError(androidx.media3.common.PlaybackException error) {
-                goHome();
-            }
+        videoView.setOnErrorListener((mp, what, extra) -> {
+            startActivity(new Intent(IntroVideoActivity.this, HomeActivity.class));
+            finish();
+            return true;
         });
     }
 
-    private void goHome() {
-        startActivity(new Intent(IntroVideoActivity.this, HomeActivity.class));
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    private void hideSystemUi() {
+        View decor = getWindow().getDecorView();
+        decor.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (player != null) {
-            player.release();
-            player = null;
-        }
+    protected void onResume() {
+        super.onResume();
+        hideSystemUi();
+        if (videoView != null) videoView.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (videoView != null) videoView.pause();
     }
 }
