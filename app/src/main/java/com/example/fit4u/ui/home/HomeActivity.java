@@ -92,7 +92,20 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         btnAddItem.setOnClickListener(v -> openAddItemDialog());
+
         btnCloset.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, ClosetActivity.class)));
+
+        findViewById(R.id.btnLogout).setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+
+            Intent i = new Intent(HomeActivity.this,
+                    com.example.fit4u.ui.auth.MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+
+            finishAffinity();
+        });
+
     }
 
     @Override

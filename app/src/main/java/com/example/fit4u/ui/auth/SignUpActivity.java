@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fit4u.R;
 import com.example.fit4u.ui.home.IntroVideoActivity;
-import com.example.fit4u.ui.model.AuthViewModel;
 
 public class SignUpActivity extends AppCompatActivity {
 

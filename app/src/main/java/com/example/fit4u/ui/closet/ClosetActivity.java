@@ -130,23 +130,22 @@ public class ClosetActivity extends AppCompatActivity {
 
         String s = c.trim().toLowerCase();
 
-        if (s.contains("jacket") || s.contains("coat") || s.contains("outer"))
+        if (s.contains("jacket") || s.contains("coat") || s.contains("outer") || s.contains("trench"))
             return "Jackets";
 
-        if (s.contains("pant") || s.contains("jean") || s.contains("trouser"))
+        if (s.contains("pant") || s.contains("jean") || s.contains("shorts") || s.contains("tights") )
             return "Pants";
 
-        if (s.contains("top") || s.contains("shirt") || s.contains("tee") || s.contains("tshirt"))
+        if (s.contains("top") || s.contains("shirt") || s.contains("tee") || s.contains("tshirt") || s.contains("tank") || s.contains("sweater") || s.contains("cardigan"))
             return "Tops";
 
         if (s.contains("bag") || s.contains("purse") || s.contains("handbag"))
             return "Bags";
 
-        if (s.contains("shoe") || s.contains("sneaker") || s.contains("heel") || s.contains("boot"))
+        if (s.contains("shoes") || s.contains("sneakers") || s.contains("heels") || s.contains("boots"))
             return "Shoes";
 
-        if (s.contains("access") || s.contains("jewel") || s.contains("belt")
-                || s.contains("hat") || s.contains("scarf"))
+        if (s.contains("access") || s.contains("jewel") || s.contains("belt") || s.contains("hat") || s.contains("scarf") || s.contains("watch") || s.contains("necklace") || s.contains("ring"))
             return "Accessories";
 
         if (c.equals("Jackets") || c.equals("Pants") || c.equals("Tops")

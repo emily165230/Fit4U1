@@ -24,6 +24,20 @@
         android:layout_height="match_parent"
         android:padding="18dp">
 
+        <!-- 🔴 LOGOUT -->
+        <ImageButton
+            android:id="@+id/btnLogout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_lock_power_off"
+            android:contentDescription="Logout"
+            android:padding="6dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"/>
+
         <!-- Title -->
         <TextView
             android:id="@+id/tvHello"
@@ -43,7 +57,7 @@
             android:id="@+id/tvTip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Choose an option to continue 💕 "
+            android:text="Choose an option to continue 💕"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:gravity="center"
@@ -52,7 +66,6 @@
             app:layout_constraintBottom_toTopOf="@id/btnToday"
             android:layout_marginBottom="10dp" />
 
-        <!-- Today’s Outfit -->
         <Button
             android:id="@+id/btnToday"
             android:layout_width="0dp"
@@ -67,7 +80,6 @@
             app:layout_constraintBottom_toTopOf="@id/btnSavedOutfits"
             android:layout_marginBottom="10dp" />
 
-        <!-- ✅ NEW: Saved Outfits -->
         <Button
             android:id="@+id/btnSavedOutfits"
             android:layout_width="0dp"
@@ -82,7 +94,6 @@
             app:layout_constraintBottom_toTopOf="@id/btnRow"
             android:layout_marginBottom="12dp" />
 
-        <!-- Row of buttons -->
         <LinearLayout
             android:id="@+id/btnRow"
             android:layout_width="0dp"

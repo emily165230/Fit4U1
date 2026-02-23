@@ -1,4 +1,4 @@
-package com.example.fit4u.ui.model;
+package com.example.fit4u.ui.auth;
 
 import android.text.TextUtils;
 import android.util.Patterns;
